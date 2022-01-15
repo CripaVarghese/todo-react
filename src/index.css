@@ -1,0 +1,530 @@
+* {
+    padding: 0;
+    margin: 0;
+  }
+  #root {
+    width: 100vw;
+    height: 100vh;
+  }
+  .todo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .card {
+    width: 30%;
+    height: 90%;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 1px 15px 0 rgba(0, 0, 0, 0.5);
+  }
+  .task_details_page {
+    height: 87%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .incomplete_task_box,
+  .completed_task_box {
+    width: 80%;
+    height: 42%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .incomplete_task_box {
+    padding-bottom: 15px;
+  }
+  .incomplete_task_list_container,
+  .completed_task_list_container {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+  }
+  .incomplete_task_list,
+  .completed_task_list {
+    width: 85%;
+  }
+  .noTaskWarning {
+    color: red;
+  }
+  .addTaskIn_Incomplete,
+  .addTaskIn_Complete {
+    height: 80%;
+    padding: 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .addTaskIn_Incomplete {
+    background-color: #ebe6fe;
+  }
+  .addTaskIn_Complete {
+    background-color: #ececec;
+  }
+  .taskIncomplete_Container,
+  .taskComplete_Container {
+    width: 100%;
+    margin: 7px;
+    background-color: transparent;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .taskIncomplete,
+  .taskComplete {
+    width: 90%;
+    height: auto;
+    padding: 5px;
+    background-color: #f6f4ff;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .inputValue {
+    width: 100px;
+    color: #361e86;
+    font-size: 12px;
+    word-wrap: break-word;
+  }
+  .select_button {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .button_finish_start {
+    width: 50%;
+    color: white;
+    background-color: #5359d3;
+    border-color: transparent;
+    border-radius: 3px;
+  }
+  .button_finish_start:hover {
+    background-color: #000cf3;
+  }
+  #edit_option,
+  #delete_option {
+    font-size: 20px;
+  }
+  #edit_option {
+    color: #4049f7;
+  }
+  #edit_option:hover {
+    color: #050eb9;
+  }
+  #delete_option {
+    color: #d33125;
+  }
+  #delete_option:hover {
+    color: #ff1100;
+  }
+  .add_task_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .add_task {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .input_task_title {
+    width: 75%;
+    padding: 12px;
+    border-radius: 15px;
+    border-color: transparent;
+    box-shadow: 0 1px 10px 5px rgba(0, 0, 0, 0.3);
+    word-wrap: break-word;
+  }
+  .input_task_title:focus {
+    outline: none;
+  }
+  .add_icon {
+    color: #5359d3;
+    font-size: 35px;
+  }
+  
+  /* edit button */
+  .edit_task_details_page_container {
+    width: 100%;
+    height: 100%;
+    background: rgba(60, 60, 60, 0.4);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .edit_task_details_page {
+    width: 35%;
+    height: 45%;
+    border-radius: 4px;
+    background-color: white;
+    font-weight: bold;
+    font-size: 13px;
+    position: absolute;
+    left: 440px;
+    bottom: 29%;
+  }
+  .edit_header_body {
+    height: 85%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .edit_task_details_header {
+    width: 100%;
+    height: 20%;
+    border-bottom: 1px solid rgb(223, 221, 221);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .edit_task_details_body {
+    width: 70%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .input_task {
+    height: 60px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .edit_inputTaskValue {
+    width: 66%;
+    height: 27px;
+    padding: 0px 10px;
+    font-weight: bold;
+    background-color: rgb(223, 221, 221);
+    border-radius: 10px;
+    border-color: transparent;
+  }
+  .title_status_header {
+    width: 85px;
+  }
+  .select_task_options {
+    height: 30%;
+    display: flex;
+  }
+  .select_task {
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .edit_cancel_update {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .edit_cancel_update button {
+    padding: 5px 20px;
+    margin: 0px 5px;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 5px;
+    border-color: transparent;
+  }
+  .edit_cancel_update button:hover {
+    color: white;
+    background-color: rgb(10, 91, 197);
+  }
+  
+  /* delete button */
+  .delete_alert_confirm_container {
+    width: 100%;
+    height: 100%;
+    background: rgba(60, 60, 60, 0.4);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  .delete_alert_confirm {
+    width: 21%;
+    height: 27%;
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 39%;
+    bottom: 40%;
+  }
+  .confirm_delete_message {
+    width: 90%;
+    height: 40%;
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .confirm_delete_buttons button {
+    width: 75px;
+    padding: 3px 5px;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 5px;
+    border-color: transparent;
+  }
+  .confirm_delete_buttons {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+  }
+  #confirm_cancel:hover {
+    color: white;
+    background-color: rgb(10, 91, 197);
+  }
+  #confirm_delete:hover {
+    color: white;
+    background-color: red;
+  }
+  
+  /* media queries */
+  @media (max-width: 1300px) {
+    .todo {
+      position: relative;
+    }
+    .edit_task_details_page {
+      position: absolute;
+      left: 32%;
+    }
+  }
+  @media (max-width: 1200px) {
+    .confirm_delete_buttons {
+      width: 70%;
+    }
+  }
+  @media (max-width: 1100px) {
+    .taskIncomplete,
+    .taskComplete {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .inputValue_container {
+      width: 80%;
+      height: 90%;
+      margin: 5px 0px;
+      display: flex;
+      justify-content: center;
+    }
+    .inputValue {
+      width: 100%;
+      height: auto;
+      padding: 5px 10px;
+      background-color: #fcfcfc;
+      font-size: 12px;
+      border-radius: 5px;
+      word-wrap: break-word;
+    }
+    .select_button {
+      width: 60%;
+    }
+    .input_task_title {
+      width: 70%;
+      font-size: 0.8em;
+    }
+    .confirm_delete_buttons {
+      width: 80%;
+    }
+  }
+  @media (max-width: 980px) {
+    .input_task_title {
+      font-size: 0.7em;
+    }
+  }
+  @media (max-width: 980px) {
+    .confirm_delete_buttons {
+      width: 85%;
+    }
+  }
+  @media (max-width: 950px) {
+    .input_task {
+      display: flex;
+      align-items: center;
+    }
+  }
+  @media (max-width: 860px) {
+    .input_task_title {
+      width: 65%;
+      font-size: 0.6em;
+    }
+    .edit_cancel_update {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .confirm_delete_buttons button {
+      width: 40%;
+      font-size: 0.7em;
+    }
+  }
+  @media (max-width: 770px) {
+    .select_button {
+      width: 20%;
+    }
+    .task_details_page {
+      height: 85%;
+    }
+    .taskIncomplete,
+    .taskComplete {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .inputValue_container {
+      width: 80%;
+      height: 90%;
+      margin: 5px 0px;
+    }
+    .inputValue {
+      width: 100%;
+      height: auto;
+      padding: 5px 10px;
+      background-color: #fcfcfc;
+      font-size: 12px;
+      border-radius: 5px;
+      word-wrap: break-word;
+    }
+    .select_button {
+      width: 80%;
+    }
+    .add_task_container {
+      height: 10%;
+    }
+    .add_task {
+      width: 90%;
+    }
+    .input_task_title {
+      width: 65%;
+      height: auto;
+      font-size: 0.6em;
+      word-wrap: break-word;
+    }
+    .confirm_delete_buttons {
+      height: 30%;
+      display: flex;
+      align-items: center;
+    }
+  }
+  @media (max-width: 690px) {
+    .input_task {
+      height: 30%;
+      display: flex;
+      align-items: flex-start;
+    }
+    .edit_inputTaskValue {
+      width: 90%;
+    }
+    .select_task_options {
+      display: flex;
+      flex-direction: column;
+    }
+    .confirm_delete_buttons {
+      height: 30%;
+      display: flex;
+      align-items: center;
+    }
+  }
+  @media (max-width: 665px) {
+    .confirm_delete_message {
+      height: 50%;
+    }
+    .confirm_delete_buttons {
+      height: 30%;
+    }
+  }
+  @media (max-width: 630px) {
+    .edit_cancel_update button {
+      padding: 5px;
+    }
+    .confirm_delete_buttons {
+      width: 90%;
+    }
+    .confirm_delete_buttons button {
+      width: 40%;
+    }
+  }
+  @media (max-width: 600px) {
+    .select_button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #finish,#start {
+      width: 50%;
+    }
+  }
+  @media (max-width: 520px) {
+    .incomplete_task_list_container {
+      height: 20%;
+    }
+    .select_button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .confirm_delete_message {
+      font-size: 0.9em;
+    }
+    .confirm_delete_buttons {
+      width: 90%;
+    }
+    .confirm_delete_buttons button {
+      font-size: 0.6em;
+    }
+  }
+  @media (max-width: 360px) {
+    .incomplete_task_list_container {
+      height: 20%;
+    }
+    .select_button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    #finish,#start {
+      width: 80%;
+    }
+    .edit_header_body {
+      height: 70%;
+    }
+    .edit_cancel_update {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .edit_cancel_update button {
+      width: 50%;
+      margin: 2px;
+    }
+    .confirm_delete_message {
+      font-size: 0.8em;
+    }
+    .confirm_delete_buttons button {
+      width: 70%;
+    }
+  }
+  
