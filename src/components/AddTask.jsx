@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { taskServices } from "../services/taskServices";
-import CompletedTask from "./conditionalTasks/CompletedTask"
 
 function AddTask() {
   const [textInput, setTextInput] = useState("");
