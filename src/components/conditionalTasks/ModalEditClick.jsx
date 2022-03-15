@@ -6,7 +6,6 @@ const ModalEditClick = ({onCancel, onUpdate}) => {
   const taskData = useContext(TaskContext);
   const [state, setState] = useState(taskData);
   const onTitleChange = (event) => {
-    console.log(event.target.value);
     setState((currentState) => ({ ...currentState, taskTitle: event.target.value }));
   };
 
@@ -17,7 +16,6 @@ const ModalEditClick = ({onCancel, onUpdate}) => {
 
   const updateData = async () => {
     const payload = { ...taskData, ...state };
-    console.log({payload});
     onUpdate(payload);
   };
 

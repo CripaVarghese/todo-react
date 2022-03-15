@@ -1,6 +1,5 @@
 import EditFunction from "./EditFunction";
 import DeleteFunction from "./DeleteFunction";
-import { taskServices } from "../../services/taskServices";
 import { TaskContext } from "../../contexts/task-context";
 
 function IncompleteTask({ data, onUpdate, onDelete }) {

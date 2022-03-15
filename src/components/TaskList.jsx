@@ -23,12 +23,14 @@ function TaskList() {
   };
 
   const createTask = async (taskTitle) => {
+    if(taskTitle){
     const payload = {
       taskTitle: taskTitle,
       isComplete: false,
     };
     const updatedTask = await taskServices.postToAllTasks(payload);
     setState((currentState) => ({ ...currentState, updatedTask }));
+    }
   };
 
   const updateTask = async (payload) => {
