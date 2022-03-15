@@ -5,8 +5,7 @@ import { TaskContext } from "../../contexts/task-context";
 
 function IncompleteTask({ data, onUpdate, onDelete }) {
   
-  const startButtonClick = async (data) => {
-
+  const handleStartClick = async (data) => {
     const payload = {
       id: data.id,
       taskTitle: data.taskTitle,
@@ -26,7 +25,7 @@ function IncompleteTask({ data, onUpdate, onDelete }) {
             <button
               id='finish'
               className='button_finish_start'
-              onClick={() => startButtonClick(data)}
+              onClick={() => handleStartClick(data)}
             >
               Finish
             </button>

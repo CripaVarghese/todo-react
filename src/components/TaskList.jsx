@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { taskServices } from "../services/taskServices";
+import AddTask from "./AddTask";
 import CompletedTask from "./conditionalTasks/CompletedTask";
 import IncompleteTask from "./conditionalTasks/IncompleteTask";
 import Warning from "./conditionalTasks/Warning";
@@ -21,6 +22,15 @@ function TaskList() {
     }));
   };
 
+  const createTask = async (taskTitle) => {
+    const payload = {
+      taskTitle: taskTitle,
+      isComplete: false,
+    };
+    const updatedTask = await taskServices.postToAllTasks(payload);
+    setState((currentState) => ({ ...currentState, updatedTask }));
+  };
+
   const updateTask = async (payload) => {
     const updatedTask = await taskServices.patchToAllTasks(payload);
     setState((currentState) => ({ ...currentState, updatedTask }));
@@ -36,49 +46,52 @@ function TaskList() {
   useEffect(getNUpdateAllTasks, [updatedTask]);
 
   return (
-    <div className='task_details_page'>
-      <div className='incomplete_task_box'>
-        <div className='incomplete_task_list_container'>
-          <div className='incomplete_task_list'>Incomplete Tasks</div>
-        </div>
-        <div className='addTaskIn_Incomplete'>
-          {inCompleteTasks?.length ? (
-            inCompleteTasks.map((task) =>
-              task.isComplete ? null : (
-                <IncompleteTask
-                  data={task}
-                  key={task.id}
-                  onUpdate={updateTask}
-                  onDelete={deleteTask}
-                />
+    <>
+      <div className='task_details_page'>
+        <div className='incomplete_task_box'>
+          <div className='incomplete_task_list_container'>
+            <div className='incomplete_task_list'>Incomplete Tasks</div>
+          </div>
+          <div className='addTaskIn_Incomplete'>
+            {inCompleteTasks?.length ? (
+              inCompleteTasks.map((task) =>
+                task.isComplete ? null : (
+                  <IncompleteTask
+                    data={task}
+                    key={task.id}
+                    onUpdate={updateTask}
+                    onDelete={deleteTask}
+                  />
+                )
               )
-            )
-          ) : (
-            <Warning />
-          )}
+            ) : (
+              <Warning />
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className='completed_task_box'>
-        <div className='completed_task_list_container'>
-          <div className='completed_task_list'>Completed</div>
-        </div>
-        <div className='addTaskIn_Incomplete'>
-          {completedTasks?.length
-            ? completedTasks.map((task) =>
-              task.isComplete ? (
-                <CompletedTask
-                  data={task}
-                  key={task.id}
-                  onUpdate={updateTask}
-                  onDelete={deleteTask}
-                />
-              ) : null
-            )
-            : null}
+        <div className='completed_task_box'>
+          <div className='completed_task_list_container'>
+            <div className='completed_task_list'>Completed</div>
+          </div>
+          <div className='addTaskIn_Incomplete'>
+            {completedTasks?.length
+              ? completedTasks.map((task) =>
+                task.isComplete ? (
+                  <CompletedTask
+                    data={task}
+                    key={task.id}
+                    onUpdate={updateTask}
+                    onDelete={deleteTask}
+                  />
+                ) : null
+              )
+              : null}
+          </div>
         </div>
       </div>
-    </div>
+      <AddTask onCreate={createTask}/>
+    </>
   );
 }
 

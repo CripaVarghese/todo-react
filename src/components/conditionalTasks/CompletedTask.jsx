@@ -1,5 +1,6 @@
 import EditFunction from "./EditFunction";
 import DeleteFunction from "./DeleteFunction"
+import { TaskContext } from "../../contexts/task-context";
 
 function CompletedTask({ data, onUpdate, onDelete }) {
   const finishButtonClick = async (data) => {
@@ -12,6 +13,7 @@ function CompletedTask({ data, onUpdate, onDelete }) {
   };
 
   return (
+    <TaskContext.Provider value={data}>
     <div className='taskComplete_Container'>
       <div className='taskComplete'>
         <div className='inputValue_container'>
@@ -30,6 +32,7 @@ function CompletedTask({ data, onUpdate, onDelete }) {
         </div>
       </div>
     </div>
+    </TaskContext.Provider>
   );
 }
 

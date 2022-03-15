@@ -7,7 +7,6 @@ function App() {
     <div className="todo">
       <div className="card">
         <TaskList />
-        <AddTask />
       </div>
     </div>
   );

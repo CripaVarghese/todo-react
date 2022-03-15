@@ -4,15 +4,15 @@ import { TaskContext } from "../../contexts/task-context";
 
 const ModalEditClick = ({onCancel, onUpdate}) => {
   const taskData = useContext(TaskContext);
-  const [state, setState] = useState(taskData?.isComplete ? 'Completed' : 'Incomplete');
+  const [state, setState] = useState(taskData);
   const onTitleChange = (event) => {
     console.log(event.target.value);
-    setState({ taskTitle: event.target.value });
+    setState((currentState) => ({ ...currentState, taskTitle: event.target.value }));
   };
 
   const onValueChange=({target}) => {
     console.log(target.value);
-    setState({ isComplete: target.value === 'Completed' });
+    setState((currentState) => ({ ...currentState, isComplete: target.value === 'Completed' }));
   }
 
   const updateData = async () => {

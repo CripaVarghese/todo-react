@@ -1,17 +1,11 @@
 import { useState } from "react";
-import { taskServices } from "../services/taskServices";
 
-function AddTask() {
-  const [textInput, setTextInput] = useState("");
+function AddTask({onCreate}) {
+  const [taskTitle, setTaskTitle] = useState("");
 
-  const postNUpdateAllTasks = async () => {
-    console.log({ textInput });
-    const payload = {
-      taskTitle: textInput,
-      isComplete: false,
-    };
-    const allTasks = await taskServices.postToAllTasks(payload);
-  };
+  const handleCreate = () => {
+    onCreate(taskTitle)
+  }
 
   return (
     <div className='add_task_container'>
@@ -21,10 +15,10 @@ function AddTask() {
           className='input_task_title'
           placeholder='What would you like to do today?'
           onChange={(event) => {
-            setTextInput(event.target.value);
+            setTaskTitle(event.target.value);
           }}
         />
-        <button className="add_icon" onClick={postNUpdateAllTasks}>
+        <button className="add_icon" onClick={handleCreate}>
           <i className='fa fa-plus-square'></i>
         </button>
       </div>
