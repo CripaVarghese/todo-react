@@ -20,6 +20,7 @@ const patchToAllTasks = async (payload) => {
   console.error('ERROR::: Failed to complete patchToAllTasks. Required params missing.')
 };
 const deleteTask = async (payload) => {
+  console.log(payload)
   if(payload.id){
     const response = await axios.delete(`${routes.allTasks}/${payload.id}`, payload);
     return response.data;

@@ -1,7 +1,7 @@
 import EditFunction from "./EditFunction";
 import DeleteFunction from "./DeleteFunction"
 
-function CompletedTask({ data, onUpdate }) {
+function CompletedTask({ data, onUpdate, onDelete }) {
   const finishButtonClick = async (data) => {
     const payload = {
       id: data.id,
@@ -25,10 +25,8 @@ function CompletedTask({ data, onUpdate }) {
           >
             Start
           </button>
-          <EditFunction dataAll1={data}
-          />
-           <DeleteFunction dataAll1={data}
-          />
+          <EditFunction onUpdate={onUpdate} />
+          <DeleteFunction onDelete={onDelete} />
         </div>
       </div>
     </div>

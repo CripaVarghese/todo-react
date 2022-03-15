@@ -5,6 +5,7 @@ function AddTask() {
   const [textInput, setTextInput] = useState("");
 
   const postNUpdateAllTasks = async () => {
+    console.log({ textInput });
     const payload = {
       taskTitle: textInput,
       isComplete: false,
@@ -23,12 +24,10 @@ function AddTask() {
             setTextInput(event.target.value);
           }}
         />
-        <i
-          className='add_icon fa fa-plus-square'
-          onClick={postNUpdateAllTasks}
-        ></i>
-
-      </div> 
+        <button className="add_icon" onClick={postNUpdateAllTasks}>
+          <i className='fa fa-plus-square'></i>
+        </button>
+      </div>
     </div>
   );
 }

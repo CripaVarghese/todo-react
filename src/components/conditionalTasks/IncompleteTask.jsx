@@ -1,8 +1,9 @@
 import EditFunction from "./EditFunction";
 import DeleteFunction from "./DeleteFunction";
-import { context } from "../TaskList";
+import { taskServices } from "../../services/taskServices";
+import { TaskContext } from "../../contexts/task-context";
 
-function IncompleteTask({ data, onUpdate }) {
+function IncompleteTask({ data, onUpdate, onDelete }) {
   
   const startButtonClick = async (data) => {
 
@@ -15,7 +16,7 @@ function IncompleteTask({ data, onUpdate }) {
   };
 
   return (
-    <context.Provider value={data}>
+    <TaskContext.Provider value={data}>
       <div className='taskIncomplete_Container'>
         <div className='taskIncomplete'>
           <div className='inputValue_container'>
@@ -29,12 +30,12 @@ function IncompleteTask({ data, onUpdate }) {
             >
               Finish
             </button>
-            <EditFunction />
-            <DeleteFunction />
+            <EditFunction onUpdate={onUpdate}/>
+            <DeleteFunction onDelete={onDelete}/>
           </div>
         </div>
       </div>
-    </context.Provider>
+    </TaskContext.Provider>
   );
 }
 

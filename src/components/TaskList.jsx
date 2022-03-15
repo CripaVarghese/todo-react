@@ -4,8 +4,6 @@ import CompletedTask from "./conditionalTasks/CompletedTask";
 import IncompleteTask from "./conditionalTasks/IncompleteTask";
 import Warning from "./conditionalTasks/Warning";
 
-export const context = React.createContext();
-
 function TaskList() {
   const [state, setState] = useState({});
 
@@ -28,6 +26,12 @@ function TaskList() {
     setState((currentState) => ({ ...currentState, updatedTask }));
   };
 
+  const deleteTask = async (payload) => {
+    console.log('payload', payload)
+    const updatedTask = await taskServices.deleteTask(payload);
+    setState((currentState) => ({ ...currentState, updatedTask }));
+  };
+
   const { inCompleteTasks, completedTasks, updatedTask } = state;
   useEffect(getNUpdateAllTasks, [updatedTask]);
 
@@ -45,6 +49,7 @@ function TaskList() {
                   data={task}
                   key={task.id}
                   onUpdate={updateTask}
+                  onDelete={deleteTask}
                 />
               )
             )
@@ -61,14 +66,15 @@ function TaskList() {
         <div className='addTaskIn_Incomplete'>
           {completedTasks?.length
             ? completedTasks.map((task) =>
-                task.isComplete ? (
-                  <CompletedTask
-                    data={task}
-                    key={task.id}
-                    onUpdate={updateTask}
-                  />
-                ) : null
-              )
+              task.isComplete ? (
+                <CompletedTask
+                  data={task}
+                  key={task.id}
+                  onUpdate={updateTask}
+                  onDelete={deleteTask}
+                />
+              ) : null
+            )
             : null}
         </div>
       </div>
@@ -77,7 +83,3 @@ function TaskList() {
 }
 
 export default TaskList;
-
-// {allTasks?.length
-//   ? allTasks.map((task) => <CompletedTask data={task} />)
-//   : "No tasks yet"}

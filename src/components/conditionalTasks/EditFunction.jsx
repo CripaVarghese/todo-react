@@ -1,17 +1,17 @@
 import { useState } from "react";
 import ModalEditClick from "./ModalEditClick";
 
-const EditFunction = () => {
+const EditFunction = ({onUpdate}) => {
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const modalEditFunction = () => {
-    console.log('ok');
+  const setModalOpen = () => {
     setEditModalOpen(true);
   };
-  const editCancelFunction = () => {
+  const handleCancel = () => {
     setEditModalOpen(false);
   };
-  const editUpdateFunction = () => {
+  const handleUpdate = (payload) => {
+    onUpdate(payload);
     setEditModalOpen(false);
   };
 
@@ -20,12 +20,12 @@ const EditFunction = () => {
       <i
         id='edit_option'
         className='fa fa-edit'
-        onClick={modalEditFunction}
+        onClick={setModalOpen}
       ></i>
       {editModalOpen && (
         <ModalEditClick
-          cancel={editCancelFunction}
-          update={editUpdateFunction}
+          onCancel={handleCancel}
+          onUpdate={handleUpdate}
         />
       )}
     </>

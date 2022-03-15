@@ -1,26 +1,24 @@
 import React, { useContext } from "react";
-import { props, useState } from "react";
-import { taskServices } from "../../services/taskServices";
-import { context } from "../TaskList";
+import { useState } from "react";
+import { TaskContext } from "../../contexts/task-context";
 
-const ModalEditClick = (props, update) => {
-  const contextValue = useContext(context);
-  const [select, setSelect] = useState(contextValue.isComplete ? 'Completed' : 'Incomplete');
-  const newText = (event) => {
+const ModalEditClick = ({onCancel, onUpdate}) => {
+  const taskData = useContext(TaskContext);
+  const [state, setState] = useState(taskData?.isComplete ? 'Completed' : 'Incomplete');
+  const onTitleChange = (event) => {
     console.log(event.target.value);
-    setSelect(event.target.value);
+    setState({ taskTitle: event.target.value });
   };
 
   const onValueChange=({target}) => {
     console.log(target.value);
-    setSelect(target.value);
+    setState({ isComplete: target.value === 'Completed' });
   }
 
-  const updateData = async (event) => {
-    
-    console.log(contextValue);
-    
-    
+  const updateData = async () => {
+    const payload = { ...taskData, ...state };
+    console.log({payload});
+    onUpdate(payload);
   };
 
   return (
@@ -34,9 +32,9 @@ const ModalEditClick = (props, update) => {
               <input
                 type='text'
                 className='edit_inputTaskValue'
-                defaultValue={contextValue.taskTitle}
+                defaultValue={taskData.taskTitle}
                 onChange={(event) => {
-                  newText(event);
+                  onTitleChange(event);
                 }}
               />
             </div>
@@ -50,7 +48,7 @@ const ModalEditClick = (props, update) => {
                     id='radio_completed'
                     name='select'
                     value='Completed'
-                    checked={select === "Completed"}
+                    checked={state.isComplete}
                     onChange={onValueChange}
                   />
                     <label htmlFor='radio_completed'>completed</label>
@@ -61,7 +59,7 @@ const ModalEditClick = (props, update) => {
                     id='radio_incomplete'
                     name='select'
                     value='Incomplete'
-                    checked={select === "Incomplete"}
+                    checked={!state.isComplete}
                     onChange={onValueChange}
                   />
                     <label htmlFor='radio_incomplete'>incomplete</label>
@@ -72,14 +70,13 @@ const ModalEditClick = (props, update) => {
         </div>
 
         <div className='edit_cancel_update'>
-          <button id='edit_cancel' onClick={props.cancel}>
+          <button id='edit_cancel' onClick={onCancel}>
             Cancel
           </button>
           <button
             id='edit_update'
             onClick={(event) => {
               updateData(event);
-              props.update();
             }}
           >
             Update

@@ -1,13 +1,13 @@
-import { taskServices } from "../../services/taskServices";
+import { useContext } from "react";
+import { TaskContext } from "../../contexts/task-context";
 
-const ModalDeleteClick = ({onCancel, onDelete, dataAll2}) => {
+const ModalDeleteClick = ({ onCancel, onDelete }) => {
+  const taskData = useContext(TaskContext);
   const deleteData = async () => {
     const payload = {
-      id: dataAll2.id,
+      id: taskData?.id,
     };
-    console.log({payload})
-    const allTasks = await taskServices.deleteTask(payload);
-    onDelete();
+    onDelete(payload);
   };
 
   return (

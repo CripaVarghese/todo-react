@@ -1,16 +1,17 @@
 import { useState } from "react";
 import ModalDeleteClick from "./ModalDeleteClick";
 
-const DeleteFunction = ({ dataAll1 }) => {
+const DeleteFunction = ({ onDelete }) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const modalDeleteFunction = () => {
     setDeleteModalOpen(true);
   };
-  const deleteCancelFunction = () => {
+  const cancelDelete = () => {
     setDeleteModalOpen(false);
   };
-  const deleteDeleteFunction = () => {
+  const deleteTask = (payload) => {
+    onDelete(payload);
     setDeleteModalOpen(false);
   };
 
@@ -23,9 +24,8 @@ const DeleteFunction = ({ dataAll1 }) => {
       ></i>
       {deleteModalOpen && (
         <ModalDeleteClick
-          onCancel={deleteCancelFunction}
-          onDelete={deleteDeleteFunction}
-          dataAll2={dataAll1}
+          onCancel={cancelDelete}
+          onDelete={deleteTask}
         />
       )}
     </>
